@@ -28,7 +28,7 @@ def process_input(line, calculator):
         parameters = line.split('=')
         variable = parameters[0].strip()
         expression = parameters[1].strip()
-        if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', variable):
+        if not re.fullmatch(r'[A-Za-z]+', variable):
             return f"Error: Invalid variable name '{variable}'"
 
         try:
