@@ -17,14 +17,12 @@ UNARY_MINUS = 'UNARY_MINUS'
 BIN = 'BIN'
 OCT = 'OCT'
 HEX = 'HEX'
-SHORT_FLOAT = 'SHORT_FLOAT'
 
 TOKEN_TYPE = [
     (BIN, r'0b[01]+'),
     (OCT, r'0o[0-7]+'),
     (HEX, r'0x[a-fA-F0-9]+'),
     (FLOAT, r'\d+\.\d*([eE][-+]?\d+)?|\d*\.\d+([eE][-+]?\d+)?|\d+[eE][-+]?\d+'),
-    #(SHORT_FLOAT, r'\.\d(\d)*([eE][-+]?\d+)?'),
     (INTEGER, r'\d+'),
     (ASSIGN, r'='),
     (ID, r'[A-Za-z]+'),
@@ -42,7 +40,7 @@ TOKEN_TYPE = [
 
 operations = {PLUS, MINUS, MULT, DIV}
 unary_ops = {PLUS, MINUS}
-numbers = {INTEGER, FLOAT, SHORT_FLOAT}
+numbers = {INTEGER, FLOAT}
 not_dec_numbers = {BIN, OCT, HEX}
 keywords = {'if', 'else'}
 
@@ -88,6 +86,3 @@ class Lexer:
             tokens.append(Token(type, value, line_num, column))
         return tokens
 
-text = "1e5+2.3e-4-1.23+646846+0+.5"
-for token in Lexer(text).analysis():
-    print(token.value, '->', token.type)

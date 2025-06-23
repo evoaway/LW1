@@ -37,7 +37,7 @@ class TextCalculator:
                     if previous_token is None or previous_token.type in lexer.operations or previous_token.type == lexer.LPAR:
                         token.type = lexer.UNARY_MINUS
                 while (operator_stack and operator_stack[-1] != lexer.LPAR and
-                       self.precedence.get(operator_stack[-1], 0) >= self.precedence.get(token.type, 0)):
+                       self.precedence.get(operator_stack[-1].type, 0) >= self.precedence.get(token.type, 0)):
                     output_queue.append(operator_stack.pop())
                 operator_stack.append(token)
 
